@@ -68,14 +68,20 @@ public class App {
         List<String> inputPhones = Util.getDataFromFile(inputFile);
         Map<String, String> countryCodes = Util.turnTxtIntoMap(Util.getDataFromFile("./countryCodes.txt"));
 
-        ArrayList sortedPhones = phoneClassification(inputPhones, countryCodes.keySet().stream().toList());
+        ArrayList<Phone> sortedPhones = phoneClassification(inputPhones, countryCodes.keySet().stream().toList());
         List<Map.Entry<String, Integer>> countryCodesReport = countPhonesByCountryCode(sortedPhones, countryCodes);
+        List<Map.Entry<String, Integer>> countryCodesReportCopy = new ArrayList<>(countryCodesReport);
 
         if (!cmd.hasOption("S")) {
-            countryCodesReport.remove(0);
+
+            for (Map.Entry<String, Integer> stringIntegerEntry : countryCodesReport) {
+                if (stringIntegerEntry.getValue() == 0 || stringIntegerEntry.getKey().equals("INVALID")) {
+                    countryCodesReportCopy.remove(stringIntegerEntry);
+                }
+            }
         }
 
-        countryCodesReport.forEach(System.out::println);
+        countryCodesReportCopy.forEach(System.out::println);
 
     }
 
@@ -109,7 +115,7 @@ public class App {
     }
 
     public static ArrayList<Phone> phoneClassification(List<String> inputPhones, List<String> countryCodes) {
-        ArrayList<Phone> result = new ArrayList<Phone>();
+        ArrayList<Phone> result = new ArrayList<>();
         for (String linePhone: inputPhones) {
 
             boolean phoneStatus = Util.isPhoneValid(linePhone);
