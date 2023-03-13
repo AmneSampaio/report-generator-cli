@@ -7,7 +7,10 @@ is an invalid number.
 It was developed with Java, supporting 17 version, Maven 3.9.0 and has 
 preliminary unit tests with Junit4.
 
-To try a run you must have a countryCodes.txt file next to `report-generator-cli.jar` and a file with your phones. There's a sample of each one above for you to try it :blush:
+To try a run you must have a countryCodes.txt file next to `report-generator-cli.jar` and a file with your phones. There's a sample of each one down here for you to try it :blush:
+
+[countryCodes.txt](https://github.com/AmneSampaio/report-generator-cli/blob/develop/countryCodes.txt)  
+[input.txt](https://github.com/AmneSampaio/report-generator-cli/blob/develop/input.txt)
 
 ### Usage
 
